@@ -3,7 +3,8 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#DDDDDD">
 
     <TextView
         android:id="@+id/tvTask"
@@ -11,10 +12,20 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="60dp"
-        android:hint="Nombre de la tarea"
+        android:hint="@string/task_name"
         android:textAlignment="center"
         android:textAllCaps="true"
         android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/tvCurrentStatus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="100dp"
+        android:textAlignment="center"
+        android:textSize="16sp"
         android:textStyle="bold" />
 
     <ProgressBar
@@ -42,12 +53,11 @@
             android:id="@+id/tvMins"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="00"
+            android:text="@string/empty_chrono"
             android:textColor="@color/purple_500"
             android:textSize="34sp" />
 
         <TextView
-            android:id="@+id/tvSeparator"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text=":"
@@ -58,7 +68,7 @@
             android:id="@+id/tvSeconds"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="00"
+            android:text="@string/empty_chrono"
             android:textColor="@color/purple_500"
             android:textSize="34sp" />
 
@@ -76,17 +86,18 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="26dp"
-            android:backgroundTint="@color/white"
-            android:visibility="gone"
+            android:backgroundTint="#DDDDDD"
             android:src="@drawable/ic_play"
+            android:visibility="gone"
             app:borderWidth="2dp" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/btnStop"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:backgroundTint="@color/white"
+            android:backgroundTint="#DDDDDD"
             android:src="@drawable/ic_stop"
+            android:visibility="gone"
             app:borderWidth="2dp" />
 
     </androidx.appcompat.widget.LinearLayoutCompat>
@@ -95,12 +106,12 @@
         android:id="@+id/fabAddTask"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="26dp"
         android:layout_gravity="end|bottom"
-        android:backgroundTint="@color/color_accent"
+        android:layout_margin="26dp"
+        android:backgroundTint="@color/purple_500"
         android:src="@drawable/ic_add"
         app:fabSize="normal"
-        app:tint="@color/white" />
+        app:tint="#DDDDDD" />
 
 </FrameLayout>
 

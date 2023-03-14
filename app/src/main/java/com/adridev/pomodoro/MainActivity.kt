@@ -15,6 +15,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var countDownTimer: CountDownTimer
 
     private var timeLeft: Long = 0
+    private var restTimeLeft: Long = 0
     private var isPaused = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -33,16 +34,15 @@ class MainActivity : AppCompatActivity() {
 
     private fun pauseCountDownTimer(countDownTimer: CountDownTimer) {
 
-        if (binding.btnPlay.tag == null || binding.btnPlay.tag == R.drawable.ic_play){
+        if (binding.btnPlay.tag == null || binding.btnPlay.tag == R.drawable.ic_play) {
             binding.btnPlay.setImageResource(R.drawable.ic_pause)
             binding.btnPlay.tag = R.drawable.ic_pause
-        }
-        else {
+        } else {
             binding.btnPlay.setImageResource(R.drawable.ic_play)
             binding.btnPlay.tag = R.drawable.ic_play
         }
 
-        isPaused = if (!isPaused){
+        isPaused = if (!isPaused) {
             countDownTimer.cancel()
             true
         } else {
@@ -63,15 +63,19 @@ class MainActivity : AppCompatActivity() {
 
         btnAccept.setOnClickListener {
 
-            val name = etTaskName.text.toString()
-            val workingTime = etWorkingTime.text.toString()
-            val restTime = etRestTime.text.toString()
+            if (etTaskName.text.isNotEmpty() && etWorkingTime.text.isNotEmpty() && etRestTime.text.isNotEmpty()) {
 
-            timeLeft = (workingTime.toLong() * 60) * 1000
+                val name = etTaskName.text.toString()
+                val workingTime = etWorkingTime.text.toString()
+                val restTime = etRestTime.text.toString()
 
-            if (name.isNotEmpty() && workingTime.isNotEmpty() && restTime.isNotEmpty()) {
+                timeLeft = (workingTime.toLong() * 60) * 1000
+                restTimeLeft = (restTime.toLong() * 60) * 1000
                 startPomodoro(timeLeft)
+
+                binding.tvCurrentStatus.text = "Tiempo de trabajo"
                 binding.tvTask.text = name
+
                 dialog.hide()
             }
             else {
@@ -85,23 +89,33 @@ class MainActivity : AppCompatActivity() {
     private fun startPomodoro(time: Long) {
 
         binding.btnPlay.show()
+        binding.btnStop.show()
 
         countDownTimer = object : CountDownTimer(time, 1000) {
             override fun onTick(workingMinutesMillis: Long) {
 
                 timeLeft = workingMinutesMillis
                 updateCountDownTimerText()
+                updateProgressBar()
             }
 
             override fun onFinish() {
                 runAlarm()
+                Thread.sleep(3000)
+                startRestTime()
             }
         }.start()
     }
 
+    private fun updateProgressBar() {
+
+        val progress = (timeLeft / 600).toInt()
+        binding.progressBar.progress = progress
+    }
+
     private fun updateCountDownTimerText() {
 
-        val minutes = (timeLeft/1000) / 60
+        val minutes = (timeLeft / 1000) / 60
         val seconds = (timeLeft / 1000) % 60
 
         binding.tvMins.text = minutes.toString().padStart(2, '0')
@@ -114,14 +128,21 @@ class MainActivity : AppCompatActivity() {
         countDownTimer.cancel()
         timeLeft = 0
 
+        binding.btnPlay.hide()
         binding.tvMins.text = "00"
         binding.tvSeconds.text = "00"
-        binding.btnPlay.hide()
+        binding.progressBar.progress = 100
 
         Toast.makeText(this@MainActivity, "Cuenta atras cancelada", Toast.LENGTH_LONG).show()
+        binding.btnStop.hide()
     }
 
     private fun runAlarm() {
         Toast.makeText(this@MainActivity, "Cuenta atras finalizada", Toast.LENGTH_LONG).show()
+    }
+
+    private fun startRestTime() {
+        binding.tvCurrentStatus.text = "Tiempo de descanso"
+        startPomodoro(restTimeLeft)
     }
 }

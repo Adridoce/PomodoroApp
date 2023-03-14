@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">Pomodoro</string>
+    <string name="empty_chrono">00</string>
+    <string name="task_name">Añade una tarea</string>
+    <string name="btn_accept">Aceptar</string>
+    <string name="rest_time">Minutos de descanso</string>
+    <string name="work_time">Minutos de trabajo</string>
+    <string name="add_task_dialog">Añade tu tarea</string>
 </resources>

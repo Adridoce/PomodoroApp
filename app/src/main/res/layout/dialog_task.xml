@@ -2,7 +2,7 @@
 <androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="300dp"
     android:layout_height="wrap_content"
-    android:background="@color/color_accent"
+    android:background="#DDDDDD"
     android:orientation="vertical"
     android:padding="16dp">
 
@@ -10,33 +10,34 @@
         android:id="@+id/etDialogTask"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/white"
-        android:hint="Añade tu tarea"
-        android:textColor="@color/white"
-        android:textColorHint="@color/white" />
+        android:backgroundTint="@color/purple_500"
+        android:hint="@string/add_task_dialog"
+        android:inputType="text"
+        android:textColor="@color/purple_500"
+        android:textColorHint="@color/purple_500" />
 
     <EditText
         android:id="@+id/etDialogWorkingTime"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginVertical="16dp"
-        android:backgroundTint="@color/white"
-        android:hint="Minutos de trabajo"
+        android:backgroundTint="@color/purple_500"
+        android:hint="@string/work_time"
         android:inputType="number"
         android:maxLength="2"
-        android:textColor="@color/white"
-        android:textColorHint="@color/white" />
+        android:textColor="@color/purple_500"
+        android:textColorHint="@color/purple_500" />
 
     <EditText
         android:id="@+id/etDialogRestTime"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/white"
-        android:maxLength="2"
-        android:hint="Minutos de descanso"
+        android:backgroundTint="@color/purple_500"
+        android:hint="@string/rest_time"
         android:inputType="number"
-        android:textColor="@color/white"
-        android:textColorHint="@color/white" />
+        android:maxLength="2"
+        android:textColor="@color/purple_500"
+        android:textColorHint="@color/purple_500" />
 
     <Button
         android:id="@+id/btnDialogAddTask"
@@ -44,6 +45,6 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="16dp"
-        android:text="Aceptar"/>
+        android:text="@string/btn_accept" />
 
 </androidx.appcompat.widget.LinearLayoutCompat>
