@@ -22,8 +22,11 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.fabAddTask.setOnClickListener { showDialog() }
+        setClickListeners()
+    }
 
+    private fun setClickListeners() {
+        binding.fabAddTask.setOnClickListener { showDialog() }
         binding.btnStop.setOnClickListener { stopCountDownTimer(countDownTimer) }
         binding.btnPlay.setOnClickListener { pauseCountDownTimer(countDownTimer) }
     }
